@@ -1,0 +1,123 @@
+@import "variables";
+@import "animations";
+@import "mixins";
+@import "base";
+
+#app {
+    background: $linear-gradient;
+    place-items: center;
+    min-height: 100vh;
+    padding: 1rem;
+
+    #calculator {
+        display: grid;
+        gap: 2.6rem;
+        background-color: $black-color;
+        color: $white-color;
+        max-width: 35.6rem;
+        width: 95%;
+        height: 56.6rem;
+        padding: 5.4rem 3.2rem 3.2rem 3.2rem;
+        border-radius: 4.8rem;
+        box-shadow: $box-shadow-calculator;
+        animation: sliderForDown 0.8s ease-in-out;
+
+        header {
+            grid-template-columns: repeat(24.8rem, 2fr);
+            height: 8.6rem;
+            padding-left: 1.8rem;
+            padding-right: 2.2rem;
+
+            #calculation {
+                max-width: 24.8rem;
+                text-align: right;
+                grid-column: 1 / -1;
+                font-size: 2rem;
+                color: var($gray-color);
+            }
+
+            #result {
+                @include flex(center, space-between);
+                max-width: 24.8rem;
+
+                #symbol {
+                    font-size: 2rem;
+                    color: var($gray-color);
+                }
+
+                #result-number {
+                    font-size: 3.6rem;
+                    max-width: 22.8rem;
+                }
+            }
+        }
+
+        main {
+            justify-content: center;
+            grid-template-columns: repeat(auto-fit, 6.4rem);
+            max-height: 36.8rem;
+            gap: 1.2rem;
+
+            .key {
+                @include flex();
+                width: 6.4rem;
+                height: 6.4rem;
+                font-size: 2.4rem;
+                text-transform: uppercase;
+                border-radius: 99.9rem;
+                box-shadow: $box-shadow;
+                transition: all 0.2s ease-in-out;
+                cursor: pointer;
+
+                &:hover {
+                    background-color: $mid-black-color;
+                }
+            }
+
+            .key:first-child {
+                color: $light-purple;
+            }
+
+            .key:nth-child(4n):not(:last-child) {
+                background: linear-gradient(
+                        180deg,
+                        rgba(0, 0, 0, 0.05) 0.01%,
+                        rgba(255, 255, 255, 0.05) 100%
+                    ),
+                    #462878;
+
+                &:hover {
+                    background-color: $light-purple;
+                }
+            }
+
+            .key:last-child {
+                background: linear-gradient(
+                        180deg,
+                        rgba(0, 0, 0, 0.15) 0%,
+                        rgba(255, 255, 255, 0.05) 100%
+                    ),
+                    #7f45e2;
+
+                &:hover {
+                    background: $mid-black-color;
+                }
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 375px) {
+    main {
+        overflow-y: auto;
+    }
+
+    main::-webkit-scrollbar {
+        width: 1rem;
+    }
+
+    main::-webkit-scrollbar-thumb {
+        background: var(--light-purple);
+        border-radius: 99rem;
+    }
+}
